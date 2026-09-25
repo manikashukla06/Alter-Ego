@@ -1,0 +1,57 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id        String    @id @default(uuid())
+    email     String    @unique
+    name      String
+    alterEgo  AlterEgo?
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+}
+
+model AlterEgo {
+    id          String       @id @default(uuid())
+    userId      String       @unique
+    user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    name        String
+    description String
+    traits      String[]
+    rules       String[]
+    habits      Habit[]
+    goals       Goal[]
+    reflections Reflection[]
+    createdAt   DateTime     @default(now())
+}
+
+model Goal {
+    id         String   @id @default(uuid())
+    alterEgoId String
+    alterEgo   AlterEgo @relation(fields: [alterEgoId], references: [id], onDelete: Cascade)
+    title      String
+    completed  Boolean  @default(false)
+}
+
+model Habit {
+    id         String   @id @default(uuid())
+    alterEgoId String
+    alterEgo   AlterEgo @relation(fields: [alterEgoId], references: [id], onDelete: Cascade)
+    title      String
+    completed  Boolean  @default(false)
+}
+
+model Reflection {
+    id         String   @id @default(uuid())
+    alterEgoId String
+    alterEgo   AlterEgo @relation(fields: [alterEgoId], references: [id], onDelete: Cascade)
+    intention  String
+    action     String
+    obstacle   String
+    createdAt  DateTime @default(now())
+}
