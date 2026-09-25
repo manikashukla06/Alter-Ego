@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALTER — Build Your Alter Ego</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        alterBg: '#070709',
+                        alterCard: '#0f1015',
+                        alterBorder: '#1c1e26',
+                        alterAccent: '#d4af37',
+                        alterGreen: '#10b981',
+                        alterMuted: '#71717a'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body
+    class="bg-[#070709] text-gray-200 font-sans antialiased selection:bg-amber-500/30 selection:text-amber-200 min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+
+    <div id="modeOverlay"
+        class="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center pointer-events-none opacity-0 transition-opacity duration-700">
+        <div class="text-center space-y-4 animate-pulse">
+            <div class="text-xs font-mono tracking-[0.3em] text-amber-400 uppercase">System Reconfiguration</div>
+            <h1 id="modeOverlayTitle" class="text-5xl md:text-7xl font-serif tracking-widest text-white uppercase">
+                DISCIPLINED MODE</h1>
+            <p class="text-sm font-mono text-gray-400 max-w-md mx-auto">Distractions silenced. Target locked. Executing
+                identity protocol.</p>
+        </div>
+    </div>
+
+
+    <header
+        class="fixed top-0 left-0 right-0 z-40 bg-[#070709]/80 backdrop-blur-md border-b border-alterBorder py-4 transition-all">
+        <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+            <a href="#" onclick="navigateTo('landing')" class="flex items-center gap-3 group">
+                <span
+                    class="text-xl font-serif tracking-[0.25em] font-extrabold text-white group-hover:text-amber-400 transition">ALTER</span>
+                <span
+                    class="text-[10px] font-mono border border-amber-500/30 text-amber-400 px-2 py-0.5 rounded tracking-widest uppercase">v1.0</span>
+            </a>
+
+            <nav id="mainNav"
+                class="hidden md:flex items-center gap-8 text-xs font-mono tracking-widest uppercase text-gray-400">
+                <button onclick="navigateTo('dashboard')" class="nav-item hover:text-white transition py-1"
+                    data-target="dashboard">Dashboard</button>
+                <button onclick="navigateTo('mirror')" class="nav-item hover:text-white transition py-1"
+                    data-target="mirror">Mirror</button>
+                <button onclick="navigateTo('identity')" class="nav-item hover:text-white transition py-1"
+                    data-target="identity">Profile</button>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <button id="navCreateBtn" onclick="navigateTo('create')"
+                    class="px-4 py-2 rounded-full border border-white/20 text-xs font-mono uppercase tracking-wider text-white hover:border-amber-400 hover:text-amber-400 transition">
+                    Create Alter Ego
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="flex-1 pt-24 pb-16">
+
+
+        <section id="screen-landing" class="screen-view active-screen">
+            <div class="max-w-5xl mx-auto px-6 pt-16 pb-24 text-center space-y-8">
+                <div
+                    class="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-[0.2em] text-gray-400">
+                    Identity Engineering System
+                </div>
+
+                <h1
+                    class="text-6xl md:text-8xl lg:text-9xl font-serif tracking-tight text-white font-extrabold leading-none">
+                    ALTER
+                </h1>
+
+                <p class="text-xl md:text-3xl font-serif italic text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    "Who would you become if nobody was watching?"
+                </p>
+
+                <p class="text-sm md:text-base text-gray-400 max-w-lg mx-auto font-light leading-relaxed">
+                    Stop negotiating with your old habits. Construct a relentless alter ego, set non-negotiable rules,
+                    and align daily actions with your true potential.
+                </p>
+
+                <div class="pt-6">
+                    <button onclick="navigateTo('create')"
+                        class="px-10 py-5 rounded-full bg-white text-black font-mono font-bold text-xs uppercase tracking-[0.2em] hover:bg-amber-400 hover:scale-105 transition-all shadow-2xl shadow-white/10">
+                        [ CREATE YOUR ALTER EGO ]
+                    </button>
+                </div>
+            </div>
+
+            <div class="border-t border-alterBorder bg-[#0a0b0f] py-24">
+                <div class="max-w-5xl mx-auto px-6">
+                    <div class="grid md:grid-cols-3 gap-12 text-left">
+                        <div class="space-y-4 border-l border-white/10 pl-6">
+                            <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">01 — DEFINE</span>
+                            <h3 class="text-2xl font-serif font-bold text-white">Define Yourself</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed font-light">Choose core identity
+                                traits—Discipline, Calmness, Focus, Confidence.</p>
+                        </div>
+
+                        <div class="space-y-4 border-l border-white/10 pl-6">
+                            <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">02 — BUILD</span>
+                            <h3 class="text-2xl font-serif font-bold text-white">Build Your Identity</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed font-light">Establish non-negotiable rules
+                                and primary objectives that define your code.</p>
+                        </div>
+
+                        <div class="space-y-4 border-l border-white/10 pl-6">
+                            <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">03 — BECOME</span>
+                            <h3 class="text-2xl font-serif font-bold text-white">Become Through Mirror</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed font-light">Perform nightly reflections to
+                                measure intention versus execution. Eliminate the gap.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="screen-create" class="screen-view hidden">
+            <div class="max-w-2xl mx-auto px-6 py-12">
+                <div class="mb-10 text-center space-y-2">
+                    <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Protocol Initiation</span>
+                    <h2 class="text-4xl font-serif font-extrabold text-white">Create Your Alter Ego</h2>
+                    <p class="text-xs text-gray-400">Design the person you are actively evolving into.</p>
+                </div>
+
+                <form id="createAlterEgoForm" onsubmit="handleCreateAlterEgo(event)"
+                    class="bg-[#0f1015] border border-alterBorder p-8 rounded-3xl space-y-8 shadow-2xl">
+                    <div>
+                        <label class="block text-xs font-mono uppercase tracking-widest text-gray-300 mb-2">Alter Ego
+                            Name</label>
+                        <input type="text" id="egoName" required placeholder="e.g. Vera, Marcus, Phoenix"
+                            class="w-full bg-[#070709] border border-alterBorder rounded-xl px-5 py-4 text-white text-base focus:outline-none focus:border-amber-400 font-serif">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono uppercase tracking-widest text-gray-300 mb-2">Persona
+                            Description</label>
+                        <input type="text" id="egoDescription" required placeholder="e.g. Calm. Disciplined. Fearless."
+                            class="w-full bg-[#070709] border border-alterBorder rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-amber-400 font-mono">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono uppercase tracking-widest text-gray-300 mb-3">Core Traits
+                            (Select up to 4)</label>
+                        <div class="flex flex-wrap gap-2" id="traitSelector">
+                            <button type="button" onclick="toggleTrait(this, 'Discipline')"
+                                class="trait-chip border border-white/10 bg-white/5 text-xs font-mono px-4 py-2 rounded-full text-gray-300 hover:border-amber-400 transition">Discipline</button>
+                            <button type="button" onclick="toggleTrait(this, 'Confidence')"
+                                class="trait-chip border border-white/10 bg-white/5 text-xs font-mono px-4 py-2 rounded-full text-gray-300 hover:border-amber-400 transition">Confidence</button>
+                            <button type="button" onclick="toggleTrait(this, 'Curiosity')"
+                                class="trait-chip border border-white/10 bg-white/5 text-xs font-mono px-4 py-2 rounded-full text-gray-300 hover:border-amber-400 transition">Curiosity</button>
+                            <button type="button" onclick="toggleTrait(this, 'Focus')"
+                                class="trait-chip border border-white/10 bg-white/5 text-xs font-mono px-4 py-2 rounded-full text-gray-300 hover:border-amber-400 transition">Focus</button>
+                            <button type="button" onclick="toggleTrait(this, 'Resilience')"
+                                class="trait-chip border border-white/10 bg-white/5 text-xs font-mono px-4 py-2 rounded-full text-gray-300 hover:border-amber-400 transition">Resilience</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label
+                            class="block text-xs font-mono uppercase tracking-widest text-gray-300 mb-2">Non-Negotiable
+                            Rules</label>
+                        <div class="space-y-3" id="rulesList">
+                            <div class="flex gap-2">
+                                <input type="text"
+                                    class="rule-input w-full bg-[#070709] border border-alterBorder rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono"
+                                    value="Never negotiate with procrastination">
+                            </div>
+                            <div class="flex gap-2">
+                                <input type="text"
+                                    class="rule-input w-full bg-[#070709] border border-alterBorder rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono"
+                                    value="Speak even when nervous">
+                            </div>
+                            <div class="flex gap-2">
+                                <input type="text"
+                                    class="rule-input w-full bg-[#070709] border border-alterBorder rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-amber-400 font-mono"
+                                    value="Finish what you start">
+                            </div>
+                        </div>
+                        <button type="button" onclick="addRuleInput()"
+                            class="mt-3 text-xs font-mono text-amber-400 hover:underline flex items-center gap-1">
+                            <i class="fa-solid fa-plus text-[10px]"></i> Add Another Rule
+                        </button>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono uppercase tracking-widest text-gray-300 mb-2">Primary
+                            Objective</label>
+                        <input type="text" id="egoGoal" required
+                            placeholder="e.g. Become consistent in full-stack development"
+                            class="w-full bg-[#070709] border border-alterBorder rounded-xl px-5 py-4 text-white text-sm focus:outline-none focus:border-amber-400 font-mono">
+                    </div>
+
+                    <button type="submit"
+                        class="w-full py-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-[0.2em] transition shadow-lg shadow-amber-400/20">
+                        [ CREATE ALTER EGO ]
+                    </button>
+                </form>
+            </div>
+        </section>
+
+
+        <section id="screen-dashboard" class="screen-view hidden">
+            <div class="max-w-4xl mx-auto px-6 py-8">
+                <div class="bg-[#0f1015] border border-alterBorder rounded-3xl p-8 md:p-12 shadow-2xl space-y-10">
+                    <div class="flex justify-between items-start border-b border-white/10 pb-8">
+                        <div>
+                            <span
+                                class="text-[10px] font-mono uppercase tracking-[0.3em] text-amber-400 block mb-1">IDENTIFICATION
+                                DOSSIER</span>
+                            <h1 id="dashName"
+                                class="text-4xl md:text-6xl font-serif font-extrabold text-white uppercase tracking-wider">
+                                VERA</h1>
+                            <p id="dashDescription" class="text-xs font-mono italic text-gray-400 mt-2">"Do it before
+                                you feel ready."</p>
+                        </div>
+
+                        <div class="text-right bg-white/5 border border-white/10 p-4 rounded-2xl">
+                            <span
+                                class="text-[10px] font-mono uppercase tracking-widest text-gray-400 block mb-1">CONSISTENCY</span>
+                            <div id="dashConsistency"
+                                class="text-3xl md:text-4xl font-mono font-extrabold text-amber-400">78%</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xs font-mono uppercase tracking-[0.25em] text-gray-400">TODAY'S HABITS</h3>
+                            <button onclick="promptAddHabit()"
+                                class="text-xs font-mono text-amber-400 hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i> Add Habit
+                            </button>
+                        </div>
+                        <div id="habitsList" class="space-y-3"></div>
+                    </div>
+
+                    <div class="space-y-3 pt-4 border-t border-white/10">
+                        <h3 class="text-xs font-mono uppercase tracking-[0.25em] text-gray-400">IDENTITY CODE (RULES)
+                        </h3>
+                        <ul id="dashRules" class="grid md:grid-cols-2 gap-3 text-xs font-mono text-gray-300"></ul>
+                    </div>
+
+                    <!-- CURRENT MODE -->
+                    <div
+                        class="bg-[#070709] border border-white/15 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div>
+                            <span
+                                class="text-[10px] font-mono uppercase tracking-widest text-gray-400 block mb-1">CURRENT
+                                MODE</span>
+                            <div id="dashModeText"
+                                class="text-lg font-mono font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span id="currentModeLabel">DISCIPLINED</span>
+                            </div>
+                        </div>
+
+                        <button onclick="triggerEnterMode()"
+                            class="w-full md:w-auto px-8 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-mono font-bold text-xs uppercase tracking-[0.2em] transition">
+                            [ ENTER MODE ]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN ④: MIRROR / REFLECTION -->
+        <section id="screen-mirror" class="screen-view hidden">
+            <div class="max-w-3xl mx-auto px-6 py-8">
+                <div class="text-center mb-10 space-y-2">
+                    <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">NIGHTLY EVALUATION</span>
+                    <h2 class="text-4xl font-serif font-extrabold text-white">THE MIRROR</h2>
+                    <p class="text-xs text-gray-400">Track whether your actions match the person you're becoming.</p>
+                </div>
+
+                <form id="mirrorForm" onsubmit="handleMirrorSubmit(event)"
+                    class="bg-[#0f1015] border border-alterBorder p-8 rounded-3xl space-y-6 shadow-2xl mb-12">
+                    <div>
+                        <label class="block text-xs font-mono uppercase tracking-widest text-gray-300 mb-2">Who did you
+                            plan to be today? (Intention)</label>
+                        <input type="text" id="mirrorIntention" required
+                            placeholder="e.g. Study 3 hours, exercise, stay focused without distraction"
+                            class="w-full bg-[#070709] border border-alterBorder rounded-xl px-4 py-3.5 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono uppercase tracking-widest text-gray-300 mb-2">Who were you
+                            actually? (Real Execution)</label>
+                        <input type="text" id="mirrorAction" required
+                            placeholder="e.g. Studied for 2 hours, exercised, lost 1 hour to social media"
+                            class="w-full bg-[#070709] border border-alterBorder rounded-xl px-4 py-3.5 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono uppercase tracking-widest text-gray-300 mb-2">What got in
+                            the way? (Obstacle / Friction)</label>
+                        <input type="text" id="mirrorObstacle" required
+                            placeholder="e.g. Started late in the afternoon, opened phone notifications"
+                            class="w-full bg-[#070709] border border-alterBorder rounded-xl px-4 py-3.5 text-xs text-white focus:outline-none focus:border-amber-400 font-mono">
+                    </div>
+
+                    <button type="submit"
+                        class="w-full py-4 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-mono font-bold text-xs uppercase tracking-[0.2em] transition">
+                        [ REFLECT ]
+                    </button>
+                </form>
+
+                <div class="space-y-6">
+                    <h3 class="text-xs font-mono uppercase tracking-[0.25em] text-gray-400">REFLECTION LOG</h3>
+                    <div id="reflectionLog" class="space-y-4"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREEN ⑤: PROFILE / IDENTITY DOSSIER -->
+        <section id="screen-identity" class="screen-view hidden">
+            <div class="max-w-4xl mx-auto px-6 py-8">
+                <div class="bg-[#0f1015] border border-alterBorder rounded-3xl p-8 md:p-12 shadow-2xl space-y-10">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/10 pb-6 gap-4">
+                        <div>
+                            <span class="text-[10px] font-mono uppercase tracking-[0.3em] text-amber-400 block">IDENTITY
+                                DOSSIER</span>
+                            <h2 id="profileName" class="text-4xl font-serif font-extrabold text-white uppercase">VERA
+                            </h2>
+                            <p class="text-xs font-mono text-gray-400 mt-1">Created: <span
+                                    id="profileCreatedDate">September 2026</span></p>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <button onclick="exportData()"
+                                class="px-3 py-2 rounded-lg border border-white/15 text-[11px] font-mono text-gray-300 hover:text-white hover:border-amber-400 transition">
+                                <i class="fa-solid fa-download mr-1"></i> Export Data
+                            </button>
+                            <button onclick="resetData()"
+                                class="px-3 py-2 rounded-lg border border-rose-500/30 text-[11px] font-mono text-rose-400 hover:bg-rose-500/10 transition">
+                                <i class="fa-solid fa-trash mr-1"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <h3 class="text-xs font-mono uppercase tracking-[0.25em] text-gray-400">IDENTITY TRAIT BREAKDOWN
+                        </h3>
+                        <div id="traitsProgressContainer" class="space-y-5"></div>
+                    </div>
+
+                    <div class="space-y-4 pt-6 border-t border-white/10">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-xs font-mono uppercase tracking-[0.25em] text-gray-400">CURRENT GOALS</h3>
+                            <button onclick="promptAddGoal()"
+                                class="text-xs font-mono text-amber-400 hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-plus text-[10px]"></i> Add Goal
+                            </button>
+                        </div>
+                        <div id="goalsList" class="space-y-3"></div>
+                    </div>
+
+                    <!-- Database Schema Inspector Trigger -->
+                    <div class="pt-6 border-t border-white/10">
+                        <div
+                            class="bg-[#070709] border border-white/10 p-4 rounded-xl flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-database text-amber-400 text-lg"></i>
+                                <div>
+                                    <div class="text-xs font-mono font-bold text-white">Relational Database Model</div>
+                                    <div class="text-[10px] font-mono text-gray-400">Inspect Prisma PostgreSQL Schema
+                                        Specs</div>
+                                </div>
+                            </div>
+                            <button onclick="toggleDbModal()"
+                                class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-mono text-white transition">
+                                View Schema
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-alterBorder py-6 text-center text-xs font-mono text-gray-500">
+        <p>ALTER Identity Engineering Engine © 2026. Designed for Tech Team Submission.</p>
+    </footer>
+
+    <!-- Database Schema Modal -->
+    <div id="dbModal"
+        class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div
+            class="bg-[#0f1015] border border-alterBorder rounded-2xl max-w-2xl w-full p-6 space-y-4 max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                <h3 class="text-sm font-mono font-bold text-amber-400 uppercase">Prisma Database Schema (schema.prisma)
+                </h3>
+                <button onclick="toggleDbModal()" class="text-gray-400 hover:text-white"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <pre class="bg-[#070709] p-4 rounded-xl text-xs font-mono text-emerald-400 overflow-x-auto leading-relaxed">
+model User {
+  id        String     @id @default(uuid())
+  email     String     @unique
+  name      String
+  alterEgo  AlterEgo?
+  createdAt DateTime   @default(now())
+}
+
+model AlterEgo {
+  id          String       @id @default(uuid())
+  userId      String       @unique
+  user        User         @relation(fields: [userId], references: [id])
+  name        String
+  description String
+  traits      String[]
+  rules       String[]
+  habits      Habit[]
+  goals       Goal[]
+  reflections Reflection[]
+}
+
+model Habit {
+  id          String   @id @default(uuid())
+  alterEgoId  String
+  title       String
+  completed   Boolean  @default(false)
+}
+
+model Reflection {
+  id          String   @id @default(uuid())
+  alterEgoId  String
+  intention   String
+  action      String
+  obstacle    String
+  createdAt   DateTime @default(now())
+}</pre>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
